@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--&lt;!&ndash;提供方信息&ndash;&gt;-->
+    <!--<dubbo:application name="dubbo-server" owner="mic"/>-->
+
+    <!--&lt;!&ndash;注册中心&ndash;&gt;-->
+    <!--<dubbo:registry id="zk1" address="zookeeper://192.168.11.156:2181"/>-->
+
+    <!--<dubbo:registry id="zk2" address="zookeeper://192.168.11.157:2181"/>-->
+
+    <!--<dubbo:protocol port="20880" name="dubbo"/>-->
+
+    <!--<dubbo:protocol port="8080" name="hessian"/>-->
+
+    <!--<dubbo:service interface="com.gupaoedu.dubbo.IGpHello"-->
+                   <!--ref="gpHelloService" protocol="dubbo,hessian" registry="zk1"/>-->
+
+    <!--<dubbo:service interface="com.gupaoedu.dubbo.IDemoService"-->
+                   <!--ref="demoService" protocol="hessian"/>-->
+
+    <!--<bean id="gpHelloService" class="com.gupaoedu.dubbo.GpHelloImpl"/>-->
+
+    <!--<bean id="demoService" class="com.gupaoedu.dubbo.DemoService"/>-->
+
+    <!--不用注册中心-->
+    <!--<dubbo:registry address="N/A" />-->
+    <dubbo:registry  address="zookeeper://192.168.1.155:2181"/>
+
+    <dubbo:application name="dubbo-server" owner="mic"/>
+
+    <dubbo:protocol port="20880" name="dubbo" />
+
+    <bean id="helloImpl" class="com.learn.self.HelloImpl" />
+    <!--接口需要写出来  protocol 配置协议-->
+    <dubbo:service interface="learn.self.IHello" ref="helloImpl" protocol="hessian"/>
+
+
+</beans>
